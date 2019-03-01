@@ -18,6 +18,16 @@ class CursoController extends Controller
     {
     $this->middleware('auth');
     }
+
+     public function mostrarcurso()
+    {
+    
+         $cursos = curso::all();
+        return view('cursos.mostrarcurso', [
+            'cursos' => $cursos
+        ]);      
+    }
+
     public function index()
     {
         $cursos = curso::all();

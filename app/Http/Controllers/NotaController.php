@@ -5,7 +5,6 @@ use App\Nota;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
-use App\Carrera;
 use App\Curso;
 use App\Ciclo;
 use App\Periodo;
@@ -18,7 +17,18 @@ class NotaController extends Controller
     $this->middleware('auth');
     }
     
-    //ver alumnos de acuerdo a su carrera de la vistas del admin
+    //ver alumnos de acuerdo a su peridos
+     public function alumnosperiodos($id)
+    {
+        //mostrar las notas de los periodos mayores
+        $periodo2 =DB::table('periodos')->max('id'); 
+        $periodo_id = $periodo2;
+        $notas = nota::where('carrera_id', '=', $id,'and','periodo_id','=', $periodo_id)->get();
+        return view('ciclos.mostrarestudiantes', [
+             'notas' => $notas 
+        ]);
+    }
+
      public function veralumnoadmin($id)
     {
         //mostrar las notas de los periodos mayores
@@ -97,7 +107,12 @@ class NotaController extends Controller
         ->with('promedio1', $promedio1)->with('promedio2', $promedio2);
         }
     }
-    
+     public function periodocarrera()
+    {
+         $notas = nota::all();
+         return view('notas.editar', ['notas' => $notas]);
+    }
+
     public function mostrarnotas()
     {
          $notas = nota::all();

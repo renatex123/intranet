@@ -16,6 +16,15 @@ class PeriodoController extends Controller
     {
     $this->middleware('auth');
     }
+    public function mostrarperiodos()
+    {
+    
+         $periodos = periodo::all();
+        return view('periodos.mostrarperiodo', [
+            'periodos' => $periodos
+        ]);      
+    }
+
     public function index()
     {
           $periodos = periodo::all();
