@@ -59,10 +59,9 @@ class PeriodoController extends Controller
 
        ]);
 
-       $periodo=periodo::create($request->all());
-        return view('periodos.index', [
-            'periodos' => $periodos
-        ]);    
+      periodo::create($request->all());
+       $periodos = periodo::all();
+        return view('periodos.index', ['periodos' => $periodos]);    
       
     }
 

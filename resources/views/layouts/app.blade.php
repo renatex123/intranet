@@ -89,7 +89,7 @@ function Sumar2()
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Actualiza</h6>
              <a class="dropdown-item" href="{{route('ciclos.mostrarciclocarreras')}}"><i class="fa fa-circle-o"></i>Carreras</a>
-             <a class="dropdown-item" href="{{route('notas.editar')}}"><i class="fa fa-circle-o"></i>Alumnos</a>
+            
               <a class="dropdown-item" href="{{route('periodos.mostrarperiodo')}}"><i class="fa fa-circle-o"></i>Periodos</a>
           </div>
         </div>

@@ -47,13 +47,14 @@ Route::get('Mostrar/Carreras','CarreraController@vercarreraadmin')->name('ciclos
 Route::get('Carrera/Estudiantes/{id}','NotaController@veralumnoadmin')->name('ciclos.mostrarestudiantes');
 Route::get('Estudiantes/{id}/Notas','NotaController@notasid')->name('notas.alumnoadmin');
 
+//Pestaña Peridos todas la rutas 
+Route::get('Periodo/alumnos/{id}/{id2}','NotaController@alumnosperiodos')->name('notas.alumnosperiodos');
 Route::get('Periodo/Carreras','PeriodoController@mostrarperiodos')->name('periodos.mostrarperiodo');
-Route::get('Curso/Carreras/{id}','CursoController@mostrarcurso')->name('cursos.mostrarcurso');
+Route::get('Periodo/Curso/Carreras/{id}','CursoController@mostrarcurso')->name('cursos.mostrarcurso');
 
 //crud Notas
 Route::get('Notas/{id}/index','NotaController@index')->name('notas.index');
 Route::get('Notas/{id}/nota-alumno','NotaController@notasid')->name('notas.nota-alumno');
-Route::get('Notas/editar','NotaController@mostrarnotas')->name('notas.editar');
 Route::post('Notas/nota-alumno','NotaController@editarnotas')->name('notas.editarnotas');
 
 

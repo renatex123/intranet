@@ -18,17 +18,14 @@ class NotaController extends Controller
     }
     
     //ver alumnos de acuerdo a su peridos
-     public function alumnosperiodos($id)
+     public function alumnosperiodos($id,$id2)
     {
-        //mostrar las notas de los periodos mayores
-        $periodo2 =DB::table('periodos')->max('id'); 
-        $periodo_id = $periodo2;
-        $notas = nota::where('carrera_id', '=', $id,'and','periodo_id','=', $periodo_id)->get();
-        return view('ciclos.mostrarestudiantes', [
-             'notas' => $notas 
+
+        $alumnos =nota::where('curso_id','=',$id)->where('periodo_id','=',$id2)->get();
+        return view('notas.alumnosperiodos', [
+             'alumnos' => $alumnos 
         ]);
     }
-
      public function veralumnoadmin($id)
     {
         //mostrar las notas de los periodos mayores
@@ -54,7 +51,6 @@ class NotaController extends Controller
             $promedio1=($nota->nota1+$nota->nota2+$nota->nota3+$nota->nota4)/4;
             $promedio2=($nota->nota5+$nota->nota6+$nota->nota7+$nota->nota8)/4;
         }
-     
         return view('notas.nota-alumno', ['notas' => $notas])->with('promedio1', $promedio1)->with('promedio2', $promedio2);
     }
     //funcion para editar las notas de los alumnos
@@ -112,13 +108,6 @@ class NotaController extends Controller
          $notas = nota::all();
          return view('notas.editar', ['notas' => $notas]);
     }
-
-    public function mostrarnotas()
-    {
-         $notas = nota::all();
-         return view('notas.editar', ['notas' => $notas]);
-    }
-
     public function index($id)
     {
           $notas =nota::where('ciclo_id','=',$id)->get();

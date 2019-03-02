@@ -19,13 +19,11 @@ class CursoController extends Controller
     $this->middleware('auth');
     }
 
-     public function mostrarcurso()
+     public function mostrarcurso($id)  
     {
-    
+      $periodo_id = $id;
          $cursos = curso::all();
-        return view('cursos.mostrarcurso', [
-            'cursos' => $cursos
-        ]);      
+        return view('cursos.mostrarcurso', ['periodo_id' => $periodo_id,'cursos' => $cursos]);      
     }
 
     public function index()
