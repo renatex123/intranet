@@ -7,18 +7,16 @@
         <table class="table table-bordered" id="dataTable">
 
             <thead>
-            <th class="text-center">Nombre del Curso</th>
+            <th class="text-center">Nombre del La carrera</th>
           
             <th class="text-center">Ver alumnos</th>
     
             </thead>
             <tbody>
-                @forelse($cursos as $curso)
+                @forelse($carreras as $carrera)
                 <tr>
-                    <td class="text-center">{{ $curso->nombre }}</td>
-                    <td class="text-center">{{ $curso->CarreraCurso->nombre }}</td>
-              
-    <td class="text-center"><a href="{{ route('notas.alumnosperiodos', ['curso->id'=>$curso->id,'periodo_id'=>$periodo_id] ) }}" class="btn btn-success">VER</a></td>
+                    <td class="text-center">{{ $carrera->nombre }}</td>       
+    <td class="text-center"><a href="{{ route('notas.alumnosperiodos', ['periodo_id'=>$periodo_id,'carrera->id'=>$carrera->id ] ) }}" class="btn btn-success">VER</a></td>
                 </tr>
                 @empty
             <h2>No hay datos a cargar</h2>

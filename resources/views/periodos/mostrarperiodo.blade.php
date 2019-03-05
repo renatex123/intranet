@@ -21,7 +21,7 @@
                     <td class="text-center">{{ $periodo->nombre }}</td>
                     <td class="text-center">{{ $periodo->fecha_inicio }}</td>
                     <td class="text-center">{{ $periodo->fechafinal }}</td>
-                    <td class="text-center"><a href="{{ route('cursos.mostrarcurso', $periodo->id) }}" class="btn btn-success">VER</a></td>
+                    <td class="text-center"><a href="{{ route('carreras.mostrarcarrera', $periodo->id) }}" class="btn btn-success">VER</a></td>
                 </tr>
                 @empty
             <h2>No hay datos a cargar</h2>

@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Curso;
 use App\Carrera;
 use Illuminate\Http\Request;
-
 class CursoController extends Controller
 {
     /**
@@ -13,19 +10,11 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
      public function __construct()
     {
     $this->middleware('auth');
     }
-
-     public function mostrarcurso($id)  
-    {
-      $periodo_id = $id;
-         $cursos = curso::all();
-        return view('cursos.mostrarcurso', ['periodo_id' => $periodo_id,'cursos' => $cursos]);      
-    }
-
+    
     public function index()
     {
         $cursos = curso::all();
@@ -33,7 +22,6 @@ class CursoController extends Controller
             'cursos' => $cursos
         ]);   
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -46,7 +34,6 @@ class CursoController extends Controller
             'carreras' => $carreras
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -59,11 +46,8 @@ class CursoController extends Controller
          'carrera_id' => 'required|int',
          'nombre' => 'required|string|max:50',
          'descripcion' => 'required|string|max:255',
-
        ]);
-
        $cursos=curso::create($request->all());
-
         if($cursos)
         {
         return redirect()->route('Cursos.index')->with(['message'=>'Curso agregado correctamente']);
@@ -71,7 +55,6 @@ class CursoController extends Controller
         return redirect()->route('Cursos.index')->with(['message'=>'Ocurrio un problema al guardar el Curso']);
        }
     }
-
     /**
      * Display the specified resource.
      *
@@ -82,7 +65,6 @@ class CursoController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -95,7 +77,6 @@ class CursoController extends Controller
         $cursos = curso::find($id);
             return view('Cursos.edit',['cursos' => $cursos, 'carreras' => $carreras ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -109,18 +90,15 @@ class CursoController extends Controller
           'carrera_id' => 'required|int',
          'nombre' => 'required|string|max:50',
          'descripcion' => 'required|string|max:255',
-
        ]);
         $carrera_id = $request->input('carrera_id');
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
-
           $curso =curso::find($id);
         $curso->carrera_id = $carrera_id;
         $curso->nombre = $nombre;
         $curso->descripcion = $descripcion;
         $update=$curso->update();
-
         if($update)
         {
         return redirect()->route('Cursos.index')->with(['message'=>'Curso Actualizado correctamente']);
@@ -128,7 +106,6 @@ class CursoController extends Controller
         return redirect()->route('Cursos.index')->with(['message'=>'Ocurrio un problema al Actualizar el curso']);
        }
     }
-
     /**
      * Remove the specified resource from storage.
      *

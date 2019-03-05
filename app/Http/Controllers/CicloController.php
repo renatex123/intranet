@@ -61,12 +61,22 @@ class CicloController extends Controller
     {
           $request->validate([
             'user_id' => 'required|int',
-         'carrera_id' => 'required|int',
           'curso_id' => 'required|int',
          'nombre' => 'required|string|max:20',
        ]);
+        $cursos=curso::find($request->input('curso_id'));  
 
-       $ciclos=ciclo::create($request->all());
+        $carrera_id=$cursos->carrera_id;
+
+        $user_id = $request->input('user_id');
+        $curso_id = $request->input('curso_id');
+        $nombre = $request->input('nombre');
+
+       $ciclos=ciclo::create(['user_id' => $user_id,
+            'carrera_id' => $carrera_id,
+            'curso_id' => $curso_id,
+            'nombre' => $nombre   
+        ]);
 
         if($ciclos)
         {

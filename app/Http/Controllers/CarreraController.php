@@ -18,7 +18,26 @@ class CarreraController extends Controller
         public function __construc()
      {
         $this->middleware('auth');
-     }   
+     }  
+
+     //mostrar carreras con periodo en la pestaña periodos del admin recogo el id del periodo y la mando tambien 
+      public function mostrarcarrera($id)  
+    {
+
+         $periodo_id = $id;
+         $carreras = carrera::all();
+        return view('carreras.mostrarcarrera', ['periodo_id' => $periodo_id,'carreras' => $carreras]);      
+    }
+    //mostrar carreras del periodo actual en la pestaña carreras
+      public function vercarreraadmin()
+    {
+
+        $carreras = carrera::all();
+        return view('ciclos.mostrarcarreras', [
+             'carreras' => $carreras 
+        ]);
+    } 
+    //crud de periodos
     public function index()
     {
              $carreras = carrera::all();
@@ -130,12 +149,5 @@ class CarreraController extends Controller
             }
     }
 
-     public function vercarreraadmin()
-    {
-
-        $carreras = carrera::all();
-        return view('ciclos.mostrarcarreras', [
-             'carreras' => $carreras 
-        ]);
-    }
+   
 }

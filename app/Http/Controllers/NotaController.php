@@ -16,15 +16,12 @@ class NotaController extends Controller
     {
     $this->middleware('auth');
     }
-    
     //ver alumnos de acuerdo a su peridos
      public function alumnosperiodos($id,$id2)
     {
 
-        $alumnos =nota::where('curso_id','=',$id)->where('periodo_id','=',$id2)->get();
-        return view('notas.alumnosperiodos', [
-             'alumnos' => $alumnos 
-        ]);
+        $alumnos =nota::where('periodo_id','=',$id)->where('carrera_id','=',$id2)->get();
+        return view('notas.alumnosperiodos', ['alumnos' => $alumnos ]);
     }
      public function veralumnoadmin($id)
     {
