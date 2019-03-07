@@ -79,11 +79,11 @@
                 </div>
 
                  <div class="form-group">
-              <input id="clave_registro" type="password" class="form-control form-control-user{{ $errors->has('clave_registro') ? ' is-invalid' : '' }}" name="clave_registro" value="{{ old('clave_registro') }}" placeholder="Clave cueto.." required autofocus >
+              <input id="clave_carrera" type="password" class="form-control form-control-user{{ $errors->has('clave_carrera') ? ' is-invalid' : '' }}" name="clave_carrera" value="{{ old('clave_carrera') }}" placeholder="Clave cueto.." required autofocus >
 
-                                @if ($errors->has('clave_registro'))
+                                @if ($errors->has('clave_carrera'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('clave_registro') }}</strong>
+                                        <strong>{{ $errors->first('clave_carrera') }}</strong>
                                     </span>
                                 @endif
                 </div>

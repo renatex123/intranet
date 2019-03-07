@@ -17,16 +17,6 @@
                         @csrf
                         @method('PUT')
                         
-                        <div class="form-group row">
-                        <label for="carrera_id" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de la Carerra') }}</label>
-
-                            <div class="col-md-8">
-                                 <select class="form-control" name="carrera_id">@forelse($carreras as $carrera)<option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>   @empty
-                               <h2>No hay datos a cargar</h2>@endforelse</select>
-                            </div>
-
-                        </div>
-
                          <div class="form-group row">
                         <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre del Curso') }}</label>
 

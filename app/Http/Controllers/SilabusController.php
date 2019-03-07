@@ -136,9 +136,51 @@ class SilabusController extends Controller
      * @param  \App\Silabus  $silabus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Silabus $silabus)
+    public function update(Request $request,$id)
     {
-        //
+         $request->validate([
+        'carrera_id' => 'required|int',
+         'curso_id' => 'required|int',
+         'ciclo_id' => 'required|int',
+         'periodo_id' => 'required|int',
+         'nombre' => 'required|string|max:50',
+       ]);
+        if($request-> file('archivo')){
+        $archivo = $request-> file('archivo');
+       
+        //Poner nombre unico
+            $archivo_full = time().$archivo->getClientOriginalName();
+        //Guardar la foto en la carpeta (storage/app/users)
+            Storage::disk('silabus')->put($archivo_full, File::get($archivo));
+        
+        $silabus =silabus::find($id);
+         if(\File::exists(public_path('storage/silabus/'.$silabus->archivo))){
+        \File::delete(public_path('storage/silabus/'.$silabus->archivo));
+        }
+        $silabus->carrera_id = $request->input('carrera_id');
+        $silabus->curso_id = $request->input('curso_id');
+        $silabus->ciclo_id = $request->input('ciclo_id');
+        $silabus->periodo_id = $request->input('periodo_id');
+        $silabus->nombre = $request->input('nombre');
+        $silabus->archivo = $archivo_full;
+        $update=$silabus->update();
+        }
+        else
+        {
+        $silabus =silabus::find($id);    
+        $silabus->carrera_id = $request->input('carrera_id');
+        $silabus->curso_id = $request->input('curso_id');
+        $silabus->ciclo_id = $request->input('ciclo_id');
+        $silabus->periodo_id = $request->input('periodo_id');
+        $silabus->nombre = $request->input('nombre');
+        $update=$silabus->update();   
+        }
+        if($update)
+        {
+        return redirect()->route('Silabus.index')->with(['message'=>'Silabus Actualizado correctamente']);
+        }else {
+        return redirect()->route('Silabus.index')->with(['message'=>'Ocurrio un problema al Actualizar el Silabus']);
+       }
     }
 
     /**
@@ -150,6 +192,9 @@ class SilabusController extends Controller
     public function destroy($id)
     {
        $silabus =silabus::find($id);
+       if(\File::exists(public_path('storage/silabus/'.$silabus->archivo))){
+        \File::delete(public_path('storage/silabus/'.$silabus->archivo));
+        }
          if($silabus)
             {
             $silabus->delete();

@@ -22,7 +22,7 @@
                     <td class="text-center">{{ $periodo->id }}</td>
                     <td class="text-center">{{ $periodo->nombre }}</td>
                     <td class="text-center">{{ $periodo->fecha_inicio }}</td>
-                    <td class="text-center">{{ $periodo->fechafinal }}</td>
+                    <td class="text-center">{{ $periodo->fecha_final }}</td>
                     <td class="text-center"><a href="{{ route('Periodos.edit', $periodo->id) }}" class="btn btn-success">Editar</a></td>
                      <td class="text-center"><form action="{{ route('Periodos.destroy', $periodo->id) }}" method="POST">
                         @csrf

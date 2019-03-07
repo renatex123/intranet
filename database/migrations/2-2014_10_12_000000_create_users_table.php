@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration {
             $table->string('password', 60);
             $table->string('nick', 20);
             $table->string('dni', 9);
-            $table->string('clave_registro', 255);
+            $table->string('clave_carrera', 255);
             $table->string('foto', 255);
             $table->boolean('estado');
             $table->rememberToken();

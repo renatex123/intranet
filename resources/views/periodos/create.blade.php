@@ -15,12 +15,12 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('Periodos.store') }}" >
                         @csrf
-                        
+                       
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre del Periodo') }}</label>
 
                             <div class="col-md-8">
-                                <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre">
+                                <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" autocomplete="off">
 
                                 @if ($errors->has('nombre'))
                                 <span class="invalid-feedback" role="alert">
@@ -32,10 +32,10 @@
                         </div>
 
                           <div class="form-group row">
-                            <label for="datepicker" class="col-md-4 col-form-label text-md-right">{{ __('Fecha inicio') }}</label>
-
+                            <label  class="col-md-4 col-form-label text-md-right">{{ __('Fecha inicio') }}</label>
+                             
                             <div class="col-md-8">
-                                <input id="datepicker" type="text" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio">
+                        <input type="text" id="datepicker" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio" autocomplete="off">
 
                                 @if ($errors->has('fecha_inicio'))
                                 <span class="invalid-feedback" role="alert">
@@ -47,10 +47,10 @@
                         </div>
 
                           <div class="form-group row">
-                            <label for="datepicker" class="col-md-4 col-form-label text-md-right">{{ __('Fecha Final') }}</label>
+                            <label  class="col-md-4 col-form-label text-md-right">{{ __('Fecha Final') }}</label>
 
                             <div class="col-md-8">
-                                <input id="datepicker" type="text" class="form-control{{ $errors->has('fechafinal') ? ' is-invalid' : '' }}" name="fechafinal">
+                                <input id="datepicker2" type="text" class="form-control{{ $errors->has('fechafinal') ? ' is-invalid' : '' }}" name="fecha_final" autocomplete="off">
 
                                 @if ($errors->has('fechafinal'))
                                 <span class="invalid-feedback" role="alert">

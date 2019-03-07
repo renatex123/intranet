@@ -22,9 +22,9 @@ class Event
      *
      * @return void
      */
-    public function __construct(Ciclo $ciclo)
+    public function __construct()
     {
-        $this->ciclo = $ciclo;
+        
     }
 
     /**

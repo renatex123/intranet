@@ -21,7 +21,7 @@
                             <label for="carrera_id" class="col-md-4 col-form-label text-md-right">{{ __('Seleccione la Carrera') }}</label>
                        <div class="col-md-8">
                         
-         <select class="form-control" name="carrera_id">@forelse($carreras as $carrera)<option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>   @empty
+                    <select class="form-control" name="carrera_id">@forelse($carreras as $carrera)<option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>   @empty
                                <h2>No hay datos a cargar</h2>@endforelse</select>
                     
                                 @if ($errors->has('carrera_id'))
@@ -92,10 +92,10 @@
                         </div>
 
                            <div class="form-group row">
-                            <label for="archivo" class="col-md-4 col-form-label text-md-right">{{ __('SUbe tu archivo') }}</label>
+                            <label for="archivo" class="col-md-4 col-form-label text-md-right">{{ __('Sube tu archivo') }}</label>
 
-                            <div class="col-md-8">
-                                <input id="archivo" type="file" class="form-control{{ $errors->has('archivo') ? ' is-invalid' : '' }}" name="archivo">
+                                <div class="col-md-8">
+                                <input id="archivo" type="file" name="archivo" value="{{ $silabus->archivo }}">
 
                                 @if ($errors->has('archivo'))
                                 <span class="invalid-feedback" role="alert">
@@ -104,7 +104,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-2">
                                 <button type="submit" class="btn btn-primary">
@@ -118,6 +117,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

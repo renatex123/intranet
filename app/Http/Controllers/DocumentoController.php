@@ -121,9 +121,49 @@ class DocumentoController extends Controller
      * @param  \App\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Documento $documento)
+    public function update(Request $request,$id)
     {
-        //
+       $request->validate([
+         'carrera_id' => 'required|int',
+         'curso_id' => 'required|int',
+         'ciclo_id' => 'required|int',
+         'nombre' => 'required|string|max:50',
+       ]);
+       if($request-> file('archivo')){
+        $archivo = $request-> file('archivo');
+       
+        //Poner nombre unico
+            $archivo_full = time().$archivo->getClientOriginalName();
+        //Guardar la foto en la carpeta (storage/app/users)
+            Storage::disk('documentos')->put($archivo_full, File::get($archivo));
+        
+        $documentos =documento::find($id);
+         if(\File::exists(public_path('storage/documentos/'.$documentos->archivo))){
+        \File::delete(public_path('storage/documentos/'.$documentos->archivo));
+        }
+        $documentos->carrera_id = $request->input('carrera_id');
+        $documentos->curso_id = $request->input('curso_id');
+        $documentos->ciclo_id = $request->input('ciclo_id');
+        $documentos->nombre = $request->input('nombre');
+        $documentos->archivo = $archivo_full;
+        $documento=$documentos->update();
+        }
+        else
+        {
+        $documentos =documento::find($id);    
+        $documentos->carrera_id = $request->input('carrera_id');
+        $documentos->curso_id = $request->input('curso_id');
+        $documentos->ciclo_id = $request->input('ciclo_id');
+        $documentos->nombre = $request->input('nombre');
+        $documento=$documentos->update();   
+        }
+
+        if($documento)
+        {
+        return redirect()->route('Documentos.index')->with(['message'=>'Documento Actualizado correctamente']);
+        }else {
+        return redirect()->route('Documentos.index')->with(['message'=>'Ocurrio un problema al Actualizar el Documento']);
+       }
     }
 
     /**
@@ -135,6 +175,9 @@ class DocumentoController extends Controller
     public function destroy($id)
     {
         $documentos =documento::find($id);
+         if(\File::exists(public_path('storage/documentos/'.$documentos->archivo))){
+        \File::delete(public_path('storage/silabus/'.$documentos->archivo));
+        }
          if($documentos)
             {
             $documentos->delete();

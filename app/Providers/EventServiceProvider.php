@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
+/*
         Event::listen('eloquent.created: App\Ciclo', function($ciclo){
            
          //guardamos en variables el objeto ciclo que esta creando el usuario registrado 
@@ -89,6 +89,6 @@ class EventServiceProvider extends ServiceProvider
         ]);
 
         });
-        //
+        //*/
     }
 }

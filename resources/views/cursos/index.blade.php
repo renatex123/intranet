@@ -9,7 +9,6 @@
 
             <thead>
             <th class="text-center">ID</th>
-            <th class="text-center">Carrera</th>
             <th class="text-center">Nombre</th>
             <th class="text-center">Descripcion</th>
             <th class="text-center">Editar</th>
@@ -19,7 +18,6 @@
                 @forelse($cursos as $curso)
                 <tr>
                     <td class="text-center">{{ $curso->id }}</td>
-                    <td class="text-center">{{ $curso->CarreraCurso->nombre }}</td>
                     <td class="text-center">{{ $curso->nombre }}</td>
                     <td class="text-center">{{ $curso->descripcion }}</td>
                     <td class="text-center"><a href="{{ route('Cursos.edit', $curso->id) }}" class="btn btn-success">Editar</a></td>

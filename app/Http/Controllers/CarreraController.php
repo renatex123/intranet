@@ -115,11 +115,17 @@ class CarreraController extends Controller
      
         $request->validate([
         'nombre' => 'required|string|max:30',
+        'descripcion' => 'required|string|max:255',
+        'clave_carrera' => 'required|string|max:255',
 
        ]);
-         $nombre = $request->input('nombre');
-          $Carrera =Carrera::find($id);
+        $nombre = $request->input('nombre');
+        $descripcion = $request->input('descripcion');
+        $clave_carrera = $request->input('clave_carrera');
+        $Carrera =Carrera::find($id);
         $Carrera->nombre = $nombre;
+        $Carrera->descripcion = $descripcion;
+        $Carrera->clave_carrera = $clave_carrera;
         $update=$Carrera->update();
 
         if($update)

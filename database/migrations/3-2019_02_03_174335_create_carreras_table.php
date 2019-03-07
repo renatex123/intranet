@@ -15,6 +15,8 @@ class CreateCarrerasTable extends Migration {
         Schema::create('carreras', function (Blueprint $table) {
             $table->increments('id', 3);
             $table->string('nombre', 30);
+            $table->string('descripcion', 255);
+            $table->string('clave_carrera', 255);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

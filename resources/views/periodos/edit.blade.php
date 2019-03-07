@@ -27,19 +27,19 @@
                         </div>
 
                           <div class="form-group row">
-                        <label for="fecha_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Inicio') }}</label>
+                        <label for="datepicker" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Inicio') }}</label>
 
                             <div class="col-md-8">
-                                <input id="fecha_inicio" type="text" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio" value="{{ $periodo->fecha_inicio}}">
+                                <input id="datepicker" type="text" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" name="fecha_inicio" value="{{ $periodo->fecha_inicio}}">
                             </div>
 
                         </div>
 
                           <div class="form-group row">
-                        <label for="fechafinal" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Termino') }}</label>
+                        <label for="datepicker2" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Termino') }}</label>
 
                             <div class="col-md-8">
-                                <input id="fechafinal" type="text" class="form-control{{ $errors->has('fechafinal') ? ' is-invalid' : '' }}" name="fechafinal" value="{{ $periodo->fechafinal}}">
+                                <input id="datepicker2" type="text" class="form-control{{ $errors->has('fecha_final') ? ' is-invalid' : '' }}" name="fecha_final" value="{{ $periodo->fecha_final}}">
                             </div>
 
                         </div>

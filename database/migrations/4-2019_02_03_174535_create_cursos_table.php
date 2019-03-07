@@ -14,11 +14,9 @@ class CreateCursosTable extends Migration {
     public function up() {
         Schema::create('cursos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('carrera_id');
             $table->string('nombre', 50);
             $table->string('descripcion', 255);
             $table->timestamps();
-            $table->foreign('carrera_id')->references('id')->on('carreras')->onDelete('cascade');
             $table->engine = 'InnoDB';
         });
     }

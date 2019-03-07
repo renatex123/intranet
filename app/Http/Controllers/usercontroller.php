@@ -42,7 +42,8 @@ class usercontroller extends Controller
              'surname' => 'required|string|max:30',
              'email' => 'required|string|max:50|unique:users,nick,'.$id,
              'nick' => 'required|string|max:20',
-             'dni' => 'required|string|max:9'
+             'dni' => 'required|string|max:9',
+             'foto' => 'mimes:jpeg,bmp,png'
         ]);
 //almacenar en variables
         $name = $request->input('name');

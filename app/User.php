@@ -18,7 +18,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'role', 'name', 'surname', 'email', 'nick', 'dni', 'password', 'clave_registro',
+        'role', 'name', 'surname', 'email', 'nick', 'dni', 'password', 'clave_carrera',
     ];
 
     /**
@@ -29,9 +29,9 @@ class User extends Authenticatable {
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+/*
     public function ciclo() {
         return $this->hasMany('App\ciclo');
     }
-
+*/
 }

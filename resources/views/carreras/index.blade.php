@@ -10,6 +10,8 @@
             <thead>
             <th class="text-center">ID</th>
             <th class="text-center">Nombre</th>
+            <th class="text-center">Descripcion</th>
+            <th class="text-center">Clave_Carrera</th>
             <th class="text-center">Editar</th>
             <th class="text-center">Eliminar</th>
             </thead>
@@ -18,6 +20,8 @@
                 <tr>
                     <td class="text-center">{{ $carrera->id }}</td>
                     <td class="text-center">{{ $carrera->nombre }}</td>
+                    <td class="text-center">{{ $carrera->descripcion }}</td>
+                    <td class="text-center">{{ $carrera->clave_carrera }}</td>
                     <td class="text-center"><a href="{{ route('Carreras.edit', $carrera->id) }}" class="btn btn-success">Editar</a></td>
                     
                 <td class="text-center"><form action="{{ route('Carreras.destroy', $carrera->id) }}" method="POST">

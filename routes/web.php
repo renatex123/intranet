@@ -38,6 +38,8 @@ Route::get('/Silabus/{id}/mostrar','SilabusController@mostrar')->name('silabus.m
 Route::resource('Documentos','DocumentoController');
 //crud de ciclos
 Route::resource('Ciclos','CicloController');
+//crud de ciclos
+Route::resource('Registros','RegistroController');
 
 //Pestañas Estudiantes
 //Pestaña Periodo actual todas las rutas

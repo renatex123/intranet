@@ -15,25 +15,6 @@
                 <form method="POST" action="{{ route('Ciclos.store') }}" name="formulario" >
                 @csrf
                         
-                <input id="user_id" type="hidden" value="{{ Auth::user()->id }}" name="user_id">
-
-                <div class="form-group row">
-                <label for="curso_id" class="col-md-4 col-form-label text-md-right">{{ __('Nombre del Curso') }}</label>
-                <div class="col-md-8">
-                <select class="form-control" name="curso_id">@forelse($cursos as $curso)
-            <option value="{{ $curso->id }}">{{ $curso->nombre }}-{{ $curso->CarreraCurso->nombre }}</option>
-            @empty
-            <h2>No hay datos a cargar</h2>@endforelse
-            </select>
-              
-            @if ($errors->has('curso_id'))
-            <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('curso_id') }}</strong>
-            </span>
-            @endif
-            </div>
-            </div>
-       
             <div class="form-group row">
             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Seleccione el El Ciclo') }}</label>
             <div class="col-md-8">

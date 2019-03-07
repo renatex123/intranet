@@ -55,14 +55,19 @@ class PeriodoController extends Controller
        $request->validate([
         'nombre' => 'required|string|max:30',
         'fecha_inicio' => 'required|date',
-        'fechafinal' => 'required|date',
+        'fecha_final' => 'required|date',
 
        ]);
 
-      periodo::create($request->all());
-       $periodos = periodo::all();
-        return view('periodos.index', ['periodos' => $periodos]);    
-      
+      $periodos=periodo::create($request->all());
+     
+
+        if($periodos)
+        {
+        return redirect()->route('Periodos.index')->with(['message'=>'Periodo Agregado correctamente']);
+        }else {
+        return redirect()->route('Periodos.index')->with(['message'=>'Ocurrio un problema al Agregar el Periodo']);
+       }  
     }
 
     /**
@@ -102,17 +107,17 @@ class PeriodoController extends Controller
          $request->validate([
         'nombre' => 'required|string|max:30',
         'fecha_inicio' => 'required|date',
-        'fechafinal' => 'required|date',
+        'fecha_final' => 'required|date',
 
        ]);
         $nombre = $request->input('nombre');
         $fecha_inicio = $request->input('fecha_inicio');
-        $fechafinal = $request->input('fechafinal');
+        $fecha_final = $request->input('fecha_final');
 
         $periodo =periodo::find($id);
         $periodo->nombre = $nombre;
         $periodo->fecha_inicio = $fecha_inicio;
-        $periodo->fechafinal = $fechafinal;
+        $periodo->fecha_final = $fecha_final;
         $update=$periodo->update();
 
         if($update)

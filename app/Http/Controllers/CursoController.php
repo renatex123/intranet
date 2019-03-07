@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 use App\Curso;
-use App\Carrera;
 use Illuminate\Http\Request;
 class CursoController extends Controller
 {
@@ -29,10 +28,8 @@ class CursoController extends Controller
      */
     public function create()
     {
-         $carreras = carrera::all();
-        return view('cursos.create', [
-            'carreras' => $carreras
-        ]);
+       
+        return view('cursos.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -43,7 +40,6 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-         'carrera_id' => 'required|int',
          'nombre' => 'required|string|max:50',
          'descripcion' => 'required|string|max:255',
        ]);
@@ -73,9 +69,8 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        $carreras = carrera::all();
         $cursos = curso::find($id);
-            return view('Cursos.edit',['cursos' => $cursos, 'carreras' => $carreras ]);
+            return view('Cursos.edit',['cursos' => $cursos]);
     }
     /**
      * Update the specified resource in storage.
@@ -87,15 +82,12 @@ class CursoController extends Controller
     public function update(Request $request,$id)
     {
           $request->validate([
-          'carrera_id' => 'required|int',
          'nombre' => 'required|string|max:50',
          'descripcion' => 'required|string|max:255',
        ]);
-        $carrera_id = $request->input('carrera_id');
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
-          $curso =curso::find($id);
-        $curso->carrera_id = $carrera_id;
+        $curso =curso::find($id);
         $curso->nombre = $nombre;
         $curso->descripcion = $descripcion;
         $update=$curso->update();

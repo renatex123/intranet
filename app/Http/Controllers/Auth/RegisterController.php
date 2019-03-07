@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Notas/editar';
+    protected $redirectTo = '/configuracion';
 
     /**
      * Create a new controller instance.
@@ -51,11 +51,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:30'],
             'surname' => ['required', 'string', 'max:30'],
-            'email' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'max:50','unique:users,email,$id'],
             'password' => ['required', 'string', 'max:60'],
             'nick' => ['required', 'string', 'max:20'],
             'dni' => ['required', 'string', 'max:9'],
-            'clave_registro' => ['required', 'string', 'max:255'],
+            'clave_carrera' => ['required', 'string', 'max:255'],
            
         ]);
     }
@@ -76,7 +76,7 @@ class RegisterController extends Controller
             'nick' => $data['nick'],
             'dni' => $data['dni'],
             'password' => Hash::make($data['password']),
-            'clave_registro' => $data['clave_registro'],
+            'clave_carrera' => $data['clave_carrera'],
         ]);
     }
 }

@@ -26,6 +26,6 @@ class EventListener
      */
     public function handle(Event $event)
     {
-        dd('Actualizando el ciclo', $event->ciclo);
+        
     }
 }

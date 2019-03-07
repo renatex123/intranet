@@ -13,7 +13,7 @@
                 <div class="card-header">{{ __('ACTUALIZAR EL DOCUMENTO') }}</div>
                 <br>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('Documentos.update', $documentos->id) }}" >
+                <form method="POST" action="{{ route('Documentos.update', $documentos->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         
@@ -80,7 +80,7 @@
                             <label for="archivo" class="col-md-4 col-form-label text-md-right">{{ __('SUbe tu archivo') }}</label>
 
                             <div class="col-md-8">
-                                <input id="archivo" type="file" class="form-control{{ $errors->has('archivo') ? ' is-invalid' : '' }}" name="archivo" >
+                                <input id="archivo" type="file" name="archivo" >
 
                                 @if ($errors->has('archivo'))
                                 <span class="invalid-feedback" role="alert">

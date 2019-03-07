@@ -88,11 +88,11 @@
                         <div class="form-group row">
 
 
-                            <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Sube tu Foto') }}</label>
+                            <label for="foto" class="col-md-2 col-form-label text-md-right">{{ __('Sube tu Foto') }}</label>
 
                             <div class="col-md-10">
 
-                                <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}" name="foto" value="{{ auth::user()->foto }}" required>
+                                <input id="foto" type="file" name="foto" value="{{ auth::user()->foto }}" >
 
                                 @if ($errors->has('foto'))
                                 <span class="invalid-feedback" role="alert">
@@ -101,12 +101,11 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row ">
                             @if(Auth::user()->foto)
-                            <img src="{{route('user.avatar',['filename'=>auth::user()->foto])}}" alt="">
+                    <img src="{{route('user.avatar',['filename'=>auth::user()->foto])}}" alt="" style="display:block;margin:auto;">
                             @endif
                         </div>
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-2">

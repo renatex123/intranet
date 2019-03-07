@@ -16,6 +16,11 @@
 
   <title>ONG OJV</title>
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  
+ 
   <!-- Custom fonts for this template-->
   <link href="{{asset('vendor1/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
  
@@ -46,6 +51,18 @@ function Sumar2()
 
 }
 </script>  
+
+ <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
+   <script>
+  $( function() {
+    $( "#datepicker2" ).datepicker();
+  } );
+  </script>
 </head>
 <body id="page-top">
 
@@ -106,16 +123,18 @@ function Sumar2()
              <a class="dropdown-item" href="{{route('Cursos.index')}}"><i class="fa fa-circle-o"></i>Cursos</a>
              <a class="dropdown-item" href="{{route('Carreras.index')}}"><i class="fa fa-circle-o"></i>Carreras</a>
             <a class="dropdown-item" href="{{route('Periodos.index')}}"><i class="fa fa-circle-o"></i>Periodos</a>
+             <a class="dropdown-item" href="{{route('Ciclos.index')}}"><i class="fa fa-circle-o"></i>Ciclos</a>
              <a class="dropdown-item" href="{{route('Silabus.index')}}"><i class="fa fa-circle-o"></i>Silabus</a>
             <a class="dropdown-item" href="{{route('Documentos.index')}}"><i class="fa fa-circle-o"></i>Documentos</a>
+
           </div>
         </div>
       </li>
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="{{route('Ciclos.index')}}">
+        <a class="nav-link" href="{{route('Registros.index')}}">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>CICLOS</span></a>
+          <span>PERIODO ACADEMICO</span></a>
       </li>
          <!-- Nav Item - Tables -->
       <li class="nav-item">
@@ -280,6 +299,7 @@ function Sumar2()
   </div>
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('vendor1/jquery/jquery.min.js')}}"></script>
+ <script src="{{asset('vendor1/jquery/jquery-ui.js')}}"></script>
   <script src="{{asset('vendor1/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
@@ -289,17 +309,17 @@ function Sumar2()
   <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
   <!-- Page level plugins -->
-  <script src="{{asset('vendor1/chart.js/Chart.min.js')}}"></script>
+ 
 
   <!-- Page level custom scripts -->
-  <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
-  <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+ 
   <!-- Page level plugins -->
   <script src="{{asset('vendor1/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('vendor1/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
   <!-- Page level custom scripts -->
   <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+
 
 </body>
 
