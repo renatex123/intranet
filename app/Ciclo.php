@@ -11,10 +11,5 @@ class Ciclo extends Model {
      protected $fillable = [
        'nombre',
     ];
-/*
-    protected $events=[
 
-    'created'=> Event::class,    
-    ];
-*/
 }

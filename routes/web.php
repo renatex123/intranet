@@ -33,7 +33,7 @@ Route::resource('Periodos','PeriodoController');
 Route::resource('Cursos','CursoController');
 //crud de Silabus
 Route::resource('Silabus','SilabusController');
-Route::get('/Silabus/{id}/mostrar','SilabusController@mostrar')->name('silabus.mostrar');
+Route::get('Silabus/mostrar/{id}/{id2}/{id3}/{id4}','SilabusController@mostrar')->name('Silabus.mostrar');
 //crud de Documentos
 Route::resource('Documentos','DocumentoController');
 //crud de ciclos

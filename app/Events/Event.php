@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Ciclo;
+
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -16,7 +16,7 @@ class Event
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 
-    public $ciclo;
+   
     /**
      * Create a new event instance.
      *

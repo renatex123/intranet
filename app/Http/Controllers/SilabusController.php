@@ -28,15 +28,22 @@ class SilabusController extends Controller
     $this->middleware('auth');
     }
 
-    public function mostrar($id)
+    public function mostrar($id,$id2,$id3,$id4)
     {
-        $silabus = silabus::where('ciclo_id','=',$id)
-          ->get();
-          foreach ($silabus as $silabu) {
-         $doc=$silabu->archivo;
+        $silabus = silabus::where('carrera_id','=',$id)->where('curso_id','=',$id2)->where('ciclo_id','=',$id3)->where('periodo_id','=',$id4)->get();
+          foreach ($silabus as $silabu) 
+          {
+             $doc=$silabu->archivo;
           }
-
-        return view('silabus.mostrar',['doc' => $doc]);   
+       $message = "TODAVIA NO SE SUBE EL SILABUS";
+        if(!empty($doc))
+        {
+        return view('silabus.mostrar',['doc' => $doc]);
+        }
+        else 
+        {
+        return view('silabus.mostrar',['message'=> $message]);
+        } 
     }
 
     public function index()
