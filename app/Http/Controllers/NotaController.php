@@ -43,12 +43,17 @@ class NotaController extends Controller
      //funcion del admin para mostrar las notas de alumno y tambien con 2 variables que contiene las notas promediadad
       public function notasid($id)
     {   
-            $notas = nota::where('ciclo_id','=',$id)->get();
+            $notas = nota::where('registro_id','=',$id)->get();
+        if(!empty($notas)){
+
         foreach ($notas as $nota ) {
             $promedio1=($nota->nota1+$nota->nota2+$nota->nota3+$nota->nota4)/4;
             $promedio2=($nota->nota5+$nota->nota6+$nota->nota7+$nota->nota8)/4;
         }
         return view('notas.nota-alumno', ['notas' => $notas])->with('promedio1', $promedio1)->with('promedio2', $promedio2);
+        }
+        
+
     }
     //funcion para editar las notas de los alumnos
     public function editarnotas(Request $request)

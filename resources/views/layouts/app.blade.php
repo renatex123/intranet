@@ -227,7 +227,7 @@ function Sumar2()
                 <a class="dropdown-item" href="{{route('perfil')}}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   MI PERFIL
-                </a>
+                </a><
                 <a class="dropdown-item" href="{{route('config')}}">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   ACTUALIZAR
@@ -249,7 +249,8 @@ function Sumar2()
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
+            <!-- BAR CHART -->
+
           @yield('contenido')
 
         </div>
@@ -298,29 +299,101 @@ function Sumar2()
     </div>
   </div>
   <!-- Bootstrap core JavaScript-->
-  <script src="{{asset('vendor1/jquery/jquery.min.js')}}"></script>
- <script src="{{asset('vendor1/jquery/jquery-ui.js')}}"></script>
-  <script src="{{asset('vendor1/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('vendor1/jquery/jquery.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{ asset('vendor1/chart.js/Chart.min.js')}}"></script>
+  <!-- ChartJS 1.0.1 -->
+  <script src="{{ asset('vendor1/jquery/jquery-ui.js')}}"></script>
+  <script src="{{ asset('vendor1/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="{{asset('vendor1/jquery-easing/jquery.easing.min.js')}}"></script>
+  <script src="{{ asset('vendor1/jquery-easing/jquery.easing.min.js')}}"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-
-  <!-- Page level plugins -->
- 
-
-  <!-- Page level custom scripts -->
  
   <!-- Page level plugins -->
   <script src="{{asset('vendor1/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('vendor1/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-  <!-- Page level custom scripts -->
+ 
   <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
 
-</body>
 
+<!-- page script -->
+<script>
+  $(function () {
+
+    var areaChartData = {
+      labels  : ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5', 'Nota 6', 'Nota 7','Nota 8'],
+      datasets: [
+        {
+          label               : 'PERIODO ACTUAL',
+          fillColor           : 'rgba(210, 214, 222, 1)',
+          strokeColor         : 'rgba(210, 214, 222, 1)',
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [12, 14, 0, 15, 18, 19, 10, 0]
+        },
+        {
+          label               : 'PERIODO ANTERIOR',
+          fillColor           : 'rgba(60,141,188,0.9)',
+          strokeColor         : 'rgba(60,141,188,0.8)',
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [11, 17, 11, 12, 16, 17,18,20]
+        }
+      ]
+    }
+
+  
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
+    var barChart                         = new Chart(barChartCanvas)
+    var barChartData                     = areaChartData
+    barChartData.datasets[1].fillColor   = '#00a65a'
+    barChartData.datasets[1].strokeColor = '#00a65a'
+    barChartData.datasets[1].pointColor  = '#00a65a'
+    var barChartOptions                  = {
+      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+      scaleBeginAtZero        : true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines      : true,
+      //String - Colour of the grid lines
+      scaleGridLineColor      : 'rgba(0,0,0,.05)',
+      //Number - Width of the grid lines
+      scaleGridLineWidth      : 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines  : true,
+      //Boolean - If there is a stroke on each bar
+      barShowStroke           : true,
+      //Number - Pixel width of the bar stroke
+      barStrokeWidth          : 2,
+      //Number - Spacing between each of the X value sets
+      barValueSpacing         : 5,
+      //Number - Spacing between data sets within X values
+      barDatasetSpacing       : 1,
+      //String - A legend template
+      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+      //Boolean - whether to make the chart responsive
+      responsive              : true,
+      maintainAspectRatio     : true
+    }
+
+    barChartOptions.datasetFill = false
+    barChart.Bar(barChartData, barChartOptions)
+  })
+</script>
+</body>
 </html>
+

@@ -26,7 +26,7 @@
                     <td class="text-center">{{ $registro->CursoRegistro->nombre }}</td>
                     <td class="text-center">{{ $registro->CicloRegistro->nombre }}</td>
                     <td class="text-center">{{ $registro->PeriodoRegistro->nombre }}</td>
-                    <td class="text-center"><a href="{{ route('Periodos.destroy', $registro->id) }}"><i class="fas fa-pencil-alt fa-fw"></i></a></td>
+                    <td class="text-center"><a href="{{ route('notas.nota-alumno', $registro->id) }}"><i class="fas fa-pencil-alt fa-fw"></i></a></td>
                     <td class="text-center"><a href="{{ route('Periodos.destroy', $registro->id) }}"><i class="fas fa-pencil-alt fa-fw"></i></a></td>
                 
                 <td class="text-center"><a href="{{ route('Silabus.mostrar', 

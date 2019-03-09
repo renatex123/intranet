@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Registro;
 use App\Nota;
 use App\Periodo;
 use Illuminate\Support\Facades\Event;
@@ -33,6 +34,8 @@ class EventServiceProvider extends ServiceProvider
            
          //guardamos en variables el objeto ciclo que esta creando el usuario registrado 
            $registro_id = $registro['id'];
+           var_dump($registro_id);
+           die();
          //trigger del notas (a la hora de registrar el ciclo un usuario el trigger crea un registro de notas)
             nota::create(
             [
