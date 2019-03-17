@@ -10,5 +10,4 @@ class Asistencia extends Model {
      protected $fillable = [
        'registro_id', 'estado',
     ];
-
 }

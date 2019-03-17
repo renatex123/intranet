@@ -26,8 +26,5 @@ class Registro extends Model
      protected $fillable = [
        'carrera_id','curso_id','ciclo_id','periodo_id','user_id',
     ];
-     protected $events=[
-
-    'created'=> Event::class,    
-    ];
+   
 }
