@@ -6,8 +6,10 @@ Use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\File;
 Use Faker\Provider\Image;
+use Illuminate\Support\Facades\Hash;
 Use Illuminate\Support\Facades\Storage;
 use App\User;
+use App\Role;
 use Auth;
 
 class usercontroller extends Controller
@@ -30,6 +32,48 @@ class usercontroller extends Controller
     {
         return view('user.config');
     }
+    public function registrar()
+    {
+        $roles = Role::all();
+        return view('user.registrar', compact("roles"));
+    }
+
+    public function create(Request $request)
+    {
+        
+        $nombre = $request->input('name');
+        $apellidos = $request->input('surname');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $clave_carrera =$request->input('clave_carrera');
+        $nick = $request->input('nick');
+        $dni = $request->input('dni');
+        $rol_id = $request->input('rol_id');
+        // $carrera_id=$request->input('carrera_id');
+        $foto = $request->file('foto');
+       
+        $foto_user = time().$foto->getClientOriginalName();
+
+        Storage::disk('users')->put($foto_user, File::get($foto));
+
+        $user = User::create([
+            'name' => $nombre,
+            'surname' => $apellidos,
+            'email' => $email,
+            'password' =>Hash::make($password),
+            'clave_carrera'=>$clave_carrera,
+            'nick' => $nick,
+            'dni' => $dni,
+            'foto' => $foto_user,
+            'rol_id'=>$rol_id
+            // 'carrera_id'=>$carrera_id
+        
+
+        ]);
+
+        return redirect()->route('user.gestion')->with(['message1'=>'Usuario registrado correctamente']);
+
+    }
 
     public function update(Request $request)
     {
@@ -38,9 +82,9 @@ class usercontroller extends Controller
 
 //validar request
         $validate = $this->validate($request,[
-             'name' => 'required|string|max:30',
-             'surname' => 'required|string|max:30',
-             'email' => 'required|string|max:50|unique:users,nick,'.$id,
+             'name' => 'required |alpha|max:30',
+             'surname' => 'required|alpha|max:30',
+             'email' => 'required|string|max:50|unique:users,email,'.$id,
              'nick' => 'required|string|max:20',
              'dni' => 'required|string|max:9',
              'foto' => 'mimes:jpeg,bmp,png'
@@ -75,7 +119,7 @@ class usercontroller extends Controller
 //devolver vista
         if($update)
         {
-        return redirect()->route('config')->with(['message'=>'Usuario actualizado correctamente']);
+        return redirect()->route('user.gestion')->with(['message'=>'Usuario actualizado correctamente']);
         }else {
         return redirect()->route('config')->with(['message'=>'Ocurrio un problema al guardar']);
        }
@@ -89,9 +133,10 @@ class usercontroller extends Controller
 
         public function editar_maestro ($id){
             $user = User::find($id);
+            $roles = Role::all();
             return view('user.editar',[
                 'user' => $user
-            ]);
+            ],compact('roles'));
         }
         //mostrar el perfil
         public function mostrarperfil()
@@ -107,9 +152,10 @@ class usercontroller extends Controller
             $validate = $this->validate($request,[
              'name' => 'required|string|max:30',
              'surname' => 'required|string|max:30',
-             'email' => 'required|string|max:50|unique:users,nick,'.$id,
+             'email' => 'required|string|max:50|unique:users,email,'.$id,
              'nick' => 'required|string|max:20',
-             'dni' => 'required|string|max:9'
+             'dni' => 'required|string|max:9',
+             'foto' => 'mimes:jpeg,bmp,png'
         ]);
         //pasar a variables
             $name = $request->input('name');
@@ -117,19 +163,34 @@ class usercontroller extends Controller
             $email = $request->input('email');
             $nick = $request->input('nick');
             $dni = $request->input('dni');
+            $rol_id = $request->input('rol_id');
+          
         // instanciar objeto de la BD
-        $user = user::find($id);
+            $user = User::find($id);
         //Setear Objeto
             $user->name = $name;
             $user->surname = $surname;
             $user->email = $email;
             $user->nick = $nick;
             $user->dni = $dni;
-            //seteamos la imagen
+            $user->rol_id = $rol_id;
+            $foto = $request->file('foto');
 
-        // guardamos objeto
-            $update = $user->update();
-        // redirigimos
+           
+
+            if($foto)
+            {
+            //Poner nombre unico
+                    $foto_update = time().$foto->getClientOriginalName();
+            //Guardar la foto en la carpeta (storage/app/users)
+                    Storage::disk('users')->put($foto_update, File::get($foto));
+            //seteo el nombre del objeto
+                     $user->foto = $foto_update;
+            }
+        
+            // guardamos objeto
+                $update = $user->update();
+            // redirigimos
             if($update)
             {   
                 return redirect()->route('user.gestion')->with(['message'=>'Usuario actualizado correctamente']);
